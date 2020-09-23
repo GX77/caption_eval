@@ -37,8 +37,8 @@ class Spice:
           return np.nan
 
     def compute_score(self, gts, res):
-        assert(sorted(gts.keys()) == sorted(res.keys()))
-        imgIds = sorted(gts.keys())
+        assert set(res.keys()) <= set(gts.keys())
+        imgIds = res.keys()
         
         # Prepare temp input file for the SPICE scorer
         input_data = []

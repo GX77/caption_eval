@@ -22,9 +22,8 @@ class Bleu:
         self.ref_for_image = {}
 
     def compute_score(self, gts, res):
-
-        assert(list(gts.keys()) == list(res.keys()))
-        imgIds = list(gts.keys())
+        assert set(res.keys()) <= set(gts.keys())
+        imgIds = res.keys()
 
         bleu_scorer = BleuScorer(n=self._n)
         for id in imgIds:

@@ -1,0 +1,43 @@
+import sys
+import json
+import pdb
+import traceback
+from bdb import BdbQuit
+
+from pycocoevalcap.tokenizer.ptbtokenizer import PTBTokenizer
+from pycocoevalcap.eval import EvalCap
+
+
+def evaluate(annotation_file, result_file):
+    # tokenizer = StanfordTokenizer()     # for Chinese
+    tokenizer = PTBTokenizer   # for English
+    annos = json.load(open(annotation_file, 'r'))
+    rests = json.load(open(result_file, 'r'))
+    eval_cap = EvalCap(annos, rests, tokenizer)  # , use_scorers=['Bleu', 'METEOR', 'ROUGE_L', 'CIDEr', 'SPICE'])
+
+    eval_cap.evaluate()
+
+    all_score = {}
+    for metric, score in eval_cap.eval.items():
+        # print('%s: %.4f' % (metric, score))
+        all_score[metric] = score
+
+    return all_score
+
+
+def main():
+    annotation_file = sys.argv[1]
+    result_file = sys.argv[2]
+    evaluate(annotation_file, result_file)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except BdbQuit:
+        sys.exit(1)
+    except Exception:
+        traceback.print_exc()
+        print('')
+        pdb.post_mortem()
+        sys.exit(1)

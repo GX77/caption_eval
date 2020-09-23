@@ -31,9 +31,8 @@ class Cider:
                 ref_for_image (dict)  : dictionary with key <image> and value <tokenized reference sentence>
         :return: cider (float) : computed CIDEr score for the corpus 
         """
-
-        assert(list(gts.keys()) == list(res.keys()))
-        imgIds = list(gts.keys())
+        assert set(res.keys()) <= set(gts.keys())
+        imgIds = res.keys()
 
         cider_scorer = CiderScorer(n=self._n, sigma=self._sigma)
 
