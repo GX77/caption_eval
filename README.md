@@ -1,6 +1,16 @@
+Universal Caption Evaluation
+===================
+1. You will first need to download the [Stanford CoreNLP 3.6.0](http://stanfordnlp.github.io/CoreNLP/index.html) code and models for use by SPICE. To do this, run: bash get_stanford_models.sh
+
+2. cmd: python eval.py `annotation_file` `result_file`
+  - `annotation_file` json file, format: `{image_name: [ground-truth1, ground-truth2...]}`
+  - `result_file` json file, format: `[{'image_id': image_name, 'caption': generated caption}...]`
+  
+---
+Original repository information
+
 Microsoft COCO Caption Evaluation
 ===================
-
 Evaluation codes for MS COCO caption generation.
 
 ## Requirements ##
