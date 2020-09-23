@@ -59,11 +59,11 @@ class EvalCap:
                 for sc, scs, m in zip(score, scores, method):
                     self.setEval(sc, m)
                     self.setImgToEvalImgs(scs, gts.keys(), m)
-                    print("%s: %0.1f" % (m, sc*100))
+                    # print("%s: %0.1f" % (m, sc*100))
             else:
                 self.setEval(score, method)
                 self.setImgToEvalImgs(scores, gts.keys(), method)
-                print("%s: %0.1f" % (method, score*100))
+                # print("%s: %0.1f" % (method, score*100))
         self.setEvalImgs()
 
     def setEval(self, score, method):

@@ -19,7 +19,7 @@ def evaluate(annotation_file, result_file):
 
     all_score = {}
     for metric, score in eval_cap.eval.items():
-        # print('%s: %.4f' % (metric, score))
+        print('%s: %.1f' % (metric, score*100))
         all_score[metric] = score
 
     return all_score
